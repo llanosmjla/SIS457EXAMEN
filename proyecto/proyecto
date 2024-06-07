@@ -1,0 +1,108 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <list>
+
+using namespace std;
+
+// Estamos definiendo una estructura para la fecha
+struct Fecha{
+	int dia;
+	int mes;
+	int anio;
+};
+
+// Se esta utilizando un enum para definir el tipo de contacto
+enum class TipoContacto{
+	URGENTE,
+	RECORDATORIO,
+	PERSONAL
+};
+
+
+// Se esta creando una clase Nota 
+class Nota{
+private:
+	string descripcion;
+	Fecha fecha;
+	enum TipoContacto tipo;
+public:
+	Nota(string descripcion, Fecha fecha, TipoContacto tipo){
+		this->descripcion = descripcion;
+		this->fecha = fecha;
+		this->tipo = tipo;
+	}
+	
+	// Getters y Setters
+	string GetDescripcion(){
+		return descripcion;
+	}
+		
+		void SetDescripcion(string descripcion){
+			this->descripcion = descripcion;
+		}
+			
+			Fecha GetFecha(){
+				return fecha;
+			}
+				
+				void SetFecha(Fecha fecha){
+					this->fecha = fecha;
+				}
+					
+					TipoContacto GetTipo(){
+						return tipo;
+					}
+						
+						void SetTipo(TipoContacto tipo){
+							this->tipo = tipo;
+						}
+};
+
+
+class Agenda{
+private:
+	list<Nota> *notas_;
+public:
+	Agenda(list<Nota>* notas){
+		this->notas_ = notas;
+	}
+	
+	void VerNotasUrgentes(){
+		for(Nota &nota : *notas_){
+			if(nota.GetTipo() == TipoContacto::URGENTE){
+				cout << "Descripcion: " << nota.GetDescripcion() << endl;
+				cout << "Fecha: " << nota.GetFecha().dia << "/" << nota.GetFecha().mes << "/" << nota.GetFecha().anio << endl;
+			}
+		}
+	}
+		
+};
+
+
+
+
+int main(){
+	list<Nota> notas;
+	
+	fstream File("data1/input.txt");
+	
+	
+	string line;
+	
+	while(getline(File, line)){
+		cout << line << endl;
+	}
+	
+	//int output;
+	//int input;
+	
+	/*
+	Fecha fecha1 = {1, 1, 2021};
+	Nota *nota1 = new Nota("Comprar leche", fecha1, TipoContacto::URGENTE);
+	
+	notas.push_back(*nota1);
+	Agenda agenda = Agenda(&notas);
+	agenda.VerNotasUrgentes();*/
+	return 0;
+}
