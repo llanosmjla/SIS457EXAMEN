@@ -82,20 +82,23 @@ public:
 
     void VerNotasUrgentes()
     {
-        cout << "Notas urgentes:" << endl << endl;
+        cout << "Notas urgentes:" << endl
+             << endl;
         for (Nota &nota : *notas_)
         {
             if (nota.GetTipo() == TipoContacto::URGENTE)
             {
                 cout << "Descripcion: " << nota.GetDescripcion() << endl;
-                cout << "Fecha: " << nota.GetFecha().dia << "/" << nota.GetFecha().mes << "/" << nota.GetFecha().anio << endl << endl;
+                cout << "Fecha: " << nota.GetFecha().dia << "/" << nota.GetFecha().mes << "/" << nota.GetFecha().anio << endl
+                     << endl;
             }
         }
     }
 
     void VerNotasRecordatorio()
     {
-        cout << "Notas de recordatorio:" << endl << endl;
+        cout << "Notas de recordatorio:" << endl
+             << endl;
         for (Nota &nota : *notas_)
         {
             if (nota.GetTipo() == TipoContacto::RECORDATORIO)
@@ -108,7 +111,8 @@ public:
 
     void VerNotasPersonales()
     {
-        cout << "Notas personales:" << endl << endl;
+        cout << "Notas personales:" << endl
+             << endl;
         for (Nota &nota : *notas_)
         {
             if (nota.GetTipo() == TipoContacto::PERSONAL)
@@ -121,7 +125,8 @@ public:
 
     void VerTodasLasNotas()
     {
-        cout << "Todas las notas:" << endl << endl;
+        cout << "Todas las notas:" << endl
+             << endl;
         for (Nota &nota : *notas_)
         {
             cout << "Descripcion: " << nota.GetDescripcion() << endl;
@@ -200,6 +205,7 @@ public:
         case TipoContacto::PERSONAL:
             return ContarNotasPersonales();
         }
+        return 0;
     }
 
     string ObtenerDescripcionMasLarga()
@@ -239,7 +245,6 @@ public:
         }
         return contador;
     }
-    
 };
 
 int main()
@@ -249,7 +254,7 @@ int main()
 
     string descripcion;
     Fecha fecha;
-    int dia, mes, anio;
+    // int dia, mes, anio;
     int tipo;
 
     /*fstream archivo;
@@ -257,20 +262,22 @@ int main()
     // string archivo = archivo.ate;
     string linea[27];*/
 
-    //std::ifstream archivo("C://Users//LlanosJL70//OneDrive//Documentos//AUXILIATURA 2024//ING. MOLINA//data1//input.txt");
+    // std::ifstream archivo("C://Users//LlanosJL70//OneDrive//Documentos//AUXILIATURA 2024//ING. MOLINA//data1//input.txt");
     ifstream archivo("C://Users//LlanosJL70//OneDrive//Documentos//AUXILIATURA 2024//ING. MOLINA//inputs//input5.txt");
-    if (!archivo.is_open()) {
+    if (!archivo.is_open())
+    {
         std::cerr << "No se pudo abrir el archivo." << std::endl;
         return 1;
     }
 
-    //int cantidadNotas;
+    // int cantidadNotas;
     archivo >> cantidadNotas;
 
-    //list<Nota> notas(cantidadNotas);
+    // list<Nota> notas(cantidadNotas);
 
-    for (int i = 0; i < cantidadNotas; i++) {
-        //cout << "Nota " << i << endl;
+    for (int i = 0; i < cantidadNotas; i++)
+    {
+        // cout << "Nota " << i << endl;
         archivo >> fecha.dia;
         archivo >> fecha.mes;
         archivo >> fecha.anio;
@@ -282,7 +289,7 @@ int main()
     }
 
     Agenda agenda = Agenda(&notas);
-    //agenda.VerNotasUrgentes();
+    // agenda.VerNotasUrgentes();
     cout << "Contar notas urgentes: " << agenda.ContarNotasUrgentes() << endl;
     cout << "Contar notas recordatorio: " << agenda.ContarNotasRecordatorio() << endl;
     cout << "Contar notas personales: " << agenda.ContarNotasPersonales() << endl;
@@ -294,12 +301,8 @@ int main()
 
     cout << "Total de notas por fin de semana: " << agenda.ContarNotasPorFinDeSemana() << endl;
     archivo.close();
-    
 
-   
-
-
-    //archivo.close();
+    // archivo.close();
 
     /*Fecha fecha1 = {1, 1, 2021};
     Nota *nota1 = new Nota("Comprar leche", fecha1, TipoContacto::URGENTE);
